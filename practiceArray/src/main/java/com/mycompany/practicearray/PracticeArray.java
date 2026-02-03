@@ -26,7 +26,7 @@ public class PracticeArray {
         System.out.println("Ending of Loop " + Arrays.toString(numbers));
 
 //        maxNumber(numbers);
-            avgNumber(numbers);
+        avgNumber(numbers);
     }
 
 //    public static void maxNumber(int[] numbers) {
@@ -51,11 +51,11 @@ public class PracticeArray {
 //        System.out.println("Min number:" + min);
 //
 //    }
-
     public static void avgNumber(int[] numbers) {
 
         int size = numbers.length;
         int sum = 0;
+
         float avg = 0;
 
         for (int i : numbers) {
@@ -63,7 +63,9 @@ public class PracticeArray {
 
         }
 
-        avg = sum / size ;
+        avg = sum / size;
         System.out.println("avg number:" + avg);
     }
+    
+   
 }
