@@ -13,7 +13,7 @@ public class ScarchArryWithInput {
 
         System.out.println("Input limite: ");
         int myArray = input.nextInt();
-
+ 
         int number[] = new int[myArray];
         
        
@@ -22,8 +22,8 @@ public class ScarchArryWithInput {
             System.out.println("input " + (i + 1) + " number");
             int userInput = input.nextInt();
             number[i] = userInput;
-
         }
+
         System.out.println("input Scarch number: ");
         int ser = input.nextInt();
         
