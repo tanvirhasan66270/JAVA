@@ -10,6 +10,12 @@ public class Circle {
         return rasult;
     }
 
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+
+    
     public double getPerimeter() {
 
         double rasult = 2 * Math.PI * radius;

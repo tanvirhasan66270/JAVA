@@ -4,7 +4,7 @@ public class calculetorClass {
 
     public static void main(String[] args) {
         
-        Calculetor cal=new Calculetor();
+        Calculetor cal= new Calculetor();
       
         System.out.println(  cal.calculate(80, 70, "+"));
         System.out.println(  cal.calculate(80, 70, "-"));

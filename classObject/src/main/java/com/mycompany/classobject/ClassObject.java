@@ -6,13 +6,11 @@ public class ClassObject {
 
     public static void main(String[] args) {
 
-        Circle circle = new Circle();
-        circle.radius = 15;
+        Circle circle = new Circle(15);
         System.out.println(circle.getArea());
         System.out.println(circle.getPerimeter());
 
-        Circle circle1 = new Circle();
-        circle1.radius = 8;
+        Circle circle1 = new Circle(5);
         System.out.println(circle1.getArea());
         System.out.println(circle1.getPerimeter());
 

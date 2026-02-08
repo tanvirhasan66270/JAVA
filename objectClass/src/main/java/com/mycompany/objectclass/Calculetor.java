@@ -29,17 +29,24 @@ public class Calculetor {
 //    
     public double calculate(int a, int b, String sing) {
 
+        double result = 0;
         if (sing.equals("+")) {
-            return a + b;
-        } else if (sing.equals("-")) {
-            return a - b;
-        } else if (sing.equals("*")) {
-            return a * b;
-        } else if (sing.equals("/")) {
-            return a / b;
-        }
-        return 0;
+            result = a + b;
 
+        } else if (sing.equals("-")) {
+            result = a - b;
+
+        } else if (sing.equals("*")) {
+            result = a * b;
+
+        } else if (sing.equals("/")) {
+            result = a / b;
+
+        } else if (sing.equals("%")) {
+            result = a % b;
+
+        }
+        return result;
     }
 
 }
