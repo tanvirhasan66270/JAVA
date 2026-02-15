@@ -1,5 +1,5 @@
 package com.mycompany.bkashaccount;
-public class BkashAccount {
+public class ATM {
 
     public static void main(String[] args) {
         
