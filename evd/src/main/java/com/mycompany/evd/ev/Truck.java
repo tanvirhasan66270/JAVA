@@ -1,8 +1,11 @@
-package com.mycompany.ajrobibarexam.v;
+package com.mycompany.evd.ev;
 
 public class Truck extends Vehicals {
 
     int weight;
+
+    public Truck() {
+    }
 
     public Truck(int weight) {
         this.weight = weight;
@@ -14,9 +17,9 @@ public class Truck extends Vehicals {
     }
 
     @Override
-    double getSalePrice() {
-
+    public double getSalePrice() {
         if (weight > 2000) {
+
             return ragularPrice - (ragularPrice * .10);
         } else {
             return ragularPrice;

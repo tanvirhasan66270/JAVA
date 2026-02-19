@@ -1,7 +1,8 @@
-package com.mycompany.ajrobibarexam.v;
+
+package com.mycompany.evd.ev;
+
 
 public class Vehicals {
-
     int speed;
     double ragularPrice;
     String color;
@@ -12,10 +13,10 @@ public class Vehicals {
     public Vehicals(double ragularPrice) {
         this.ragularPrice = ragularPrice;
     }
-
-    double getSalePrice() {
-        return ragularPrice;
-
+    
+    public double  getSalePrice(){
+    
+    return ragularPrice;
     }
-
+    
 }
