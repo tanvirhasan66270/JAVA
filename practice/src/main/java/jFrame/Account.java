@@ -19,7 +19,7 @@ public class Account {
     }
 
     public double getWithdraw() {
-        return MainBalance=MainBalance-withdraw;
+        return MainBalance-withdraw;
     }
 
     public void setWithdraw(double withdraw) {

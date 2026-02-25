@@ -39,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         Balance = new javax.swing.JTextArea();
+        withdrawButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +68,13 @@ public class Login extends javax.swing.JFrame {
         Balance.setRows(5);
         jScrollPane3.setViewportView(Balance);
 
+        withdrawButton.setText("withdraw");
+        withdrawButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                withdrawButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,7 +95,9 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(Submit)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(withdrawButton)
+                .addGap(0, 47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +121,9 @@ public class Login extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(Submit)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Submit)
+                    .addComponent(withdrawButton))
                 .addGap(32, 32, 32))
         );
 
@@ -136,11 +148,16 @@ public class Login extends javax.swing.JFrame {
         a.setDeposit(dep);
 
         Balance.setText(String.valueOf(a.getDeposit()));
+        
+        Balance.setText(String.valueOf(a.getDeposit()));
+    }//GEN-LAST:event_SubmitMouseClicked
+
+    private void withdrawButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_withdrawButtonMouseClicked
+        // TODO add your handling code here:
         double with = Double.parseDouble(Withdraw.getText());
         a.setWithdraw(with);
         Balance.setText(String.valueOf(a.getWithdraw()));
-Balance.setText(String.valueOf(a.getDeposit()));
-    }//GEN-LAST:event_SubmitMouseClicked
+    }//GEN-LAST:event_withdrawButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -189,5 +206,6 @@ Balance.setText(String.valueOf(a.getDeposit()));
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton withdrawButton;
     // End of variables declaration//GEN-END:variables
 }
