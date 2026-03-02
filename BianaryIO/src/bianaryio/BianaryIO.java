@@ -23,10 +23,10 @@ public class BianaryIO {
         }
         
         try {
-            FileInputStream fos=new FileInputStream("C:\\Users\\Admin\\Desktop\\tanvir.txt");
+            FileInputStream fis=new FileInputStream("C:\\Users\\Admin\\Desktop\\tanvir.txt");
             int value;
             
-            while((value=fos.read()) !=-1){
+            while((value=fis.read()) !=-1){
             System.out.println(value+" ");
         }
         } catch (FileNotFoundException ex) {
