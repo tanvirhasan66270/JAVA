@@ -9,6 +9,7 @@ package Main;
  * @author Admin
  */
 public class Vehicles {
+
     int speed;
     double ragularPrice;
     String color;
@@ -16,12 +17,14 @@ public class Vehicles {
     public Vehicles() {
     }
 
-    public Vehicles(double ragularPrice) {
+    public Vehicles( double ragularPrice) {
+       
         this.ragularPrice = ragularPrice;
     }
-   public double setPrice(){
-   
-   return ragularPrice;
-   }
-    
+
+    public double setRagularPrice() {
+        return ragularPrice;
+
+    }
+
 }

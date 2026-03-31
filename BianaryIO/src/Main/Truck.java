@@ -10,26 +10,22 @@ package Main;
  */
 public class Truck extends Vehicles {
 
-    double weight;
+    double weadth;
 
-    public Truck(double weight) {
-        this.weight = weight;
+    public Truck(double weadth) {
+        this.weadth = weadth;
     }
 
-    public Truck(double weight, double ragularPrice) {
-        super(ragularPrice);
-        this.weight = weight;
+    public Truck(double weadth, double ragularPrice) {
+        super( ragularPrice);
+        this.weadth = weadth;
     }
 
     @Override
-    public double setPrice() {
-
-        if (weight > 2000) {
-
+    public double setRagularPrice() {
+        if (weadth > 2000) {
             return ragularPrice - (ragularPrice * .10);
-        } else {
-            return ragularPrice;
-        }
+        }else{return ragularPrice;}
     }
 
 }
