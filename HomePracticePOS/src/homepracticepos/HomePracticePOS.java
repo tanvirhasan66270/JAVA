@@ -16,9 +16,10 @@ public class HomePracticePOS {
 //        DaoCatagoy dc=new DaoCatagoy();
 //        dc.save(c);
         
-        Supplier s=new Supplier();
-        DaoSupplier ds=new DaoSupplier();
-        ds.save(s);
+//        Supplier s=new Supplier();
+//        DaoSupplier ds=new DaoSupplier();
+//        ds.save(s);
+
     }
     
 }

@@ -11,7 +11,7 @@ public interface DaoService<E> {
     
     void save(E e);
     List<E> findAll();
-    void update(int  id);
+    void update(E e);
     E findByID(int id);
     void delete(int id);
     

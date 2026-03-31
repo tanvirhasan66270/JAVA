@@ -5,7 +5,7 @@
 package dao;
 
 import Model.DaoService;
-import Model.Supplier;
+import Model.Product;
 import Util.DbUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,25 +20,27 @@ import javax.swing.JOptionPane;
  *
  * @author Dell
  */
-public class DaoSupplier implements DaoService<Supplier> {
+public class DaoProduct implements DaoService<Product> {
 
     DbUtil util = new DbUtil();
     private PreparedStatement ps;
     private ResultSet rs;
 
-    String sql;
+    String sql = "";
 
     @Override
-    public void save(Supplier e) {
-        sql = "insert into supplier(supplierName,supplierCell,contactParson,contactParsonCell,Address) values(?,?,?,?,?)";
+    public void save(Product e) {
+        sql = "insert into product(id,name,price,quantity,supplierId,catagoryId) values (?,?,?,?,?,?)";
 
         try {
             ps = util.getCon().prepareStatement(sql);
+
             ps.setString(1, e.getName());
-            ps.setString(2, e.getCell());
-            ps.setString(3, e.getContactParsonName());
-            ps.setString(4, e.getContactParsonCell());
-            ps.setString(5, e.getAddress());
+            ps.setDouble(2, e.getPrice());
+            ps.setDouble(3, e.getQuantity());
+            ps.setInt(4, e.getCatagoryId());
+            ps.setInt(5, e.getSupplierId());
+
             ps.executeUpdate();
             ps.close();
             util.getCon().close();
@@ -47,50 +49,52 @@ public class DaoSupplier implements DaoService<Supplier> {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Object not Saved");
 
-            Logger.getLogger(DaoSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public List<Supplier> findAll() {
-
-        List<Supplier> list = new ArrayList<>();
-        sql = "select*from supplier";
+    public List<Product> findAll() {
+        List<Product> list = new ArrayList<>();
+        sql = "select*from product";
 
         try {
             ps = util.getCon().prepareStatement(sql);
+
             rs = ps.executeQuery();
             while (rs.next()) {
-                Supplier s = new Supplier(
+                Product p = new Product(
                         rs.getInt("id"),
-                        rs.getString("supplierName"),
-                        rs.getString("supplierCell"),
-                        rs.getString("contactParson"),
-                        rs.getString("contactParsonCell"),
-                        rs.getString("Address")
-                );
-                list.add(s);
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getDouble("quantity"),
+                        rs.getInt("catagoryP"),
+                        rs.getInt("supplierP")) {
+                };
 
+                list.add(p);
             }
             ps.close();
             util.getCon().close();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+
     }
 
     @Override
-    public void update(Supplier e) {
-        sql = "update supplier set supplierName=?,supplierCell=?,contactParson=?,contactParsonCell=?,Address=? where id=?";
+    public void update(Product e) {
+        sql = "update product from name=?,price=?,quantity=?,catagoryP=?,supplierP=? where id=?";
 
         try {
             ps = util.getCon().prepareStatement(sql);
+
             ps.setString(1, e.getName());
-            ps.setString(2, e.getCell());
-            ps.setString(3, e.getContactParsonName());
-            ps.setString(4, e.getContactParsonCell());
-            ps.setString(5, e.getAddress());
+            ps.setDouble(2, e.getPrice());
+            ps.setDouble(3, e.getQuantity());
+            ps.setInt(4, e.getCatagoryId());
+            ps.setInt(5, e.getSupplierId());
             ps.setInt(6, e.getId());
             ps.executeUpdate();
             ps.close();
@@ -98,18 +102,19 @@ public class DaoSupplier implements DaoService<Supplier> {
             JOptionPane.showInternalMessageDialog(null, "Input Update");
         } catch (SQLException ex) {
             JOptionPane.showInternalMessageDialog(null, "Input not Update");
-            Logger.getLogger(DaoSupplier.class.getName()).log(Level.SEVERE, null, ex);
+
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public Supplier findByID(int id) {
+    public Product findByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void delete(int id) {
-        sql = "delete from supplier where id=?";
+        sql = "delete from product where id=? ";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -117,34 +122,12 @@ public class DaoSupplier implements DaoService<Supplier> {
             ps.executeUpdate();
             ps.close();
             util.getCon().close();
-            JOptionPane.showMessageDialog(null, "supplier Delete");
-
+            JOptionPane.showInternalMessageDialog(null, "Input delete");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "supplier not Delete");
+            JOptionPane.showInternalMessageDialog(null, "Input not delete");
 
-            Logger.getLogger(DaoSupplier.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public List<String> getAllSupplierName() {
-        List<String> list = new ArrayList<>();
-        sql = "select*from supplier";
-
-        try {
-            ps = util.getCon().prepareStatement(sql);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                list.add(rs.getString("supplierName"));
-            }
-            ps.close();
-            util.getCon().close();
-
-        } catch (SQLException ex) {
             Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
-
     }
+
 }
