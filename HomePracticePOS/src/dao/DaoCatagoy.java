@@ -7,11 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 
 public class DaoCatagoy implements DaoService<Catagory> {
 
@@ -23,7 +23,7 @@ public class DaoCatagoy implements DaoService<Catagory> {
 
     @Override
     public void save(Catagory e) {
-        sql = "insert into tanvir(name)values(?)";
+        sql = "insert into catagory(name)values(?)";
         try {
             ps = util.getCon().prepareStatement(sql);
             ps.setString(1, e.getName());
@@ -43,12 +43,46 @@ public class DaoCatagoy implements DaoService<Catagory> {
 
     @Override
     public List<Catagory> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Catagory> list = new ArrayList<>();
+
+        sql = "select * from catagory";
+
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Catagory c = new Catagory(
+                        rs.getInt("id"),
+                        rs.getString("name")
+                );
+                list.add(c);
+            }
+            ps.close();
+            util.getCon().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
     @Override
-    public void update(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void update(Catagory e) {
+        sql = "update catagory set name=? where id=?";
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setString(1, e.getName());
+            ps.setInt(2, e.getId());
+            ps.executeUpdate();
+            ps.close();
+            util.getCon().close();
+            JOptionPane.showInternalMessageDialog(null, "Input Update");
+
+        } catch (SQLException ex) {
+            JOptionPane.showInternalMessageDialog(null, "Input Update");
+
+            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -58,7 +92,45 @@ public class DaoCatagoy implements DaoService<Catagory> {
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        sql = "delete from catagory where id=?";
+
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            util.getCon().close();
+            JOptionPane.showMessageDialog(null, "Information delete ");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Information not delete ");
+            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
+
+    public List<String> getAllCatagoryName() {
+        List<String> list;
+        list = new ArrayList<>();
+        sql = "select*from catagory";
+
+        try {
+            ps = util.getCon().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(rs.getString("name"));
+            }
+            ps.close();
+            util.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+
+    }
+    
+    
 
 }

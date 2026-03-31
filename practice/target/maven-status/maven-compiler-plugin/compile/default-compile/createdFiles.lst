@@ -9,6 +9,7 @@ com\mycompany\practice\singleDimantionArry.class
 jFrame\Login.class
 jFrame\Dashboard$1.class
 bankBalance\ChackBalanceHW.class
+com\mycompany\practice\CalculateException.class
 com\mycompany\practice\FileHandelar.class
 jFrame\Account.class
 com\mycompany\practice\RandomPass.class
@@ -16,5 +17,6 @@ com\mycompany\practice\babbleShort.class
 pos\Login$1.class
 com\mycompany\practice\posetiveNagetive.class
 bankBalance\BankBalance.class
+com\mycompany\practice\File.class
 com\mycompany\practice\UserExceptionalHandelar.class
 jFrame\Login$3.class
