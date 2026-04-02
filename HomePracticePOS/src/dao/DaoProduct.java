@@ -30,7 +30,7 @@ public class DaoProduct implements DaoService<Product> {
 
     @Override
     public void save(Product e) {
-        sql = "insert into product(id,name,price,quantity,supplierId,catagoryId) values (?,?,?,?,?,?)";
+        sql = "insert into product(name,price,quantity,catagoryP,supplierP) values (?,?,?,?,?)";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -56,7 +56,9 @@ public class DaoProduct implements DaoService<Product> {
     @Override
     public List<Product> findAll() {
         List<Product> list = new ArrayList<>();
-        sql = "select*from product";
+        sql = "select p.id, p.name, p.price, p.quantity, c.name, s.supplierName from product p "
+                + "join catagory c on c.id=p.catagoryP "
+                + "join supplier s on s.id=p.supplierP ";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -68,8 +70,8 @@ public class DaoProduct implements DaoService<Product> {
                         rs.getString("name"),
                         rs.getDouble("price"),
                         rs.getDouble("quantity"),
-                        rs.getInt("catagoryP"),
-                        rs.getInt("supplierP")) {
+                        rs.getString("c.name"),
+                        rs.getString("s.supplierName")) {
                 };
 
                 list.add(p);
@@ -85,7 +87,7 @@ public class DaoProduct implements DaoService<Product> {
 
     @Override
     public void update(Product e) {
-        sql = "update product from name=?,price=?,quantity=?,catagoryP=?,supplierP=? where id=?";
+        sql = "update product set name=?,price=?,quantity=?,catagoryP=?,supplierP=? where id=?";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -109,7 +111,25 @@ public class DaoProduct implements DaoService<Product> {
 
     @Override
     public Product findByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        sql = "select*from product where id=? ";
+        Product p = null;
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p = new Product(rs.getInt("id"), rs.getString("name"),
+                        rs.getDouble("price "), rs.getDouble("quantity"),
+                        rs.getInt("supplierP"),
+                        rs.getInt("supplierP"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+
     }
 
     @Override

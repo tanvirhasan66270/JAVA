@@ -39,9 +39,19 @@ public class AllView extends javax.swing.JFrame {
 
         buttonEmployee.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         buttonEmployee.setText("Employee");
+        buttonEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonEmployeeMouseClicked(evt);
+            }
+        });
 
         buttonCayagory.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         buttonCayagory.setText("Catagory");
+        buttonCayagory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCayagoryMouseClicked(evt);
+            }
+        });
         buttonCayagory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCayagoryActionPerformed(evt);
@@ -50,9 +60,19 @@ public class AllView extends javax.swing.JFrame {
 
         buttonSupplier.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         buttonSupplier.setText("Supplier");
+        buttonSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonSupplierMouseClicked(evt);
+            }
+        });
 
         buttonProduct.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         buttonProduct.setText("Product");
+        buttonProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonProductMouseClicked(evt);
+            }
+        });
 
         jButton5.setText("jButton5");
 
@@ -115,6 +135,32 @@ public class AllView extends javax.swing.JFrame {
     private void buttonCayagoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCayagoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonCayagoryActionPerformed
+
+    private void buttonEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEmployeeMouseClicked
+        // TODO add your handling code here:
+        EmployView ev=new EmployView();
+        ev.setVisible(true);
+    }//GEN-LAST:event_buttonEmployeeMouseClicked
+
+    private void buttonCayagoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCayagoryMouseClicked
+        // TODO add your handling code here:
+        
+        CatagoryView cv=new CatagoryView();
+        cv.setVisible(true);
+    }//GEN-LAST:event_buttonCayagoryMouseClicked
+
+    private void buttonSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSupplierMouseClicked
+        // TODO add your handling code here:
+        
+        SuppliewView sv=new SuppliewView();
+        sv.setVisible(true);
+    }//GEN-LAST:event_buttonSupplierMouseClicked
+
+    private void buttonProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductMouseClicked
+        // TODO add your handling code here:
+        ProductView pv=new ProductView();
+        pv.setVisible(true);
+    }//GEN-LAST:event_buttonProductMouseClicked
 
     /**
      * @param args the command line arguments

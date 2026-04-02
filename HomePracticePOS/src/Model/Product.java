@@ -16,6 +16,9 @@ public class Product {
     private double quantity;
     private int catagoryId;
     private int supplierId;
+    
+    private String supplierName;
+    private String catagoryName;
 
     public Product() {
     }
@@ -27,6 +30,8 @@ public class Product {
         this.quantity = quantity;
         this.catagoryId = catagoryId;
         this.supplierId = supplierId;
+        
+        
 
     }
 
@@ -37,6 +42,15 @@ public class Product {
         this.catagoryId = catagoryId;
         this.supplierId = supplierId;
 
+    }
+
+    public Product(int id, String name, double price, double quantity, String supplierName, String catagoryName) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.supplierName = supplierName;
+        this.catagoryName = catagoryName;
     }
 
     public int getId() {
@@ -87,9 +101,28 @@ public class Product {
         this.catagoryId = catagoryId;
     }
 
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public String getCatagoryName() {
+        return catagoryName;
+    }
+
+    public void setCatagoryName(String catagoryName) {
+        this.catagoryName = catagoryName;
+    }
+
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", supplierId=" + supplierId + ", catagoryId=" + catagoryId + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", catagoryId=" + catagoryId + ", supplierId=" + supplierId + ", supplierName=" + supplierName + ", catagoryName=" + catagoryName + '}';
     }
+    
+
+    
 
 }
