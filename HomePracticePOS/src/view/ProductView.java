@@ -20,6 +20,7 @@ public class ProductView extends javax.swing.JFrame {
     DaoCatagoy daoCatagoy = new DaoCatagoy();
     DaoSupplier daoSupplier = new DaoSupplier();
     DaoProduct daoProduct = new DaoProduct();
+    Product product;
 
     /**
      * Creates new form ProductView
@@ -82,10 +83,10 @@ public class ProductView extends javax.swing.JFrame {
         txtProductQuantity = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnCatagorySave = new javax.swing.JButton();
-        btnCatagoryUpdate = new javax.swing.JButton();
-        btnCatagoryDelete = new javax.swing.JButton();
-        btnCatagoryReset = new javax.swing.JButton();
+        btnProductSave = new javax.swing.JButton();
+        btnProductUpdate = new javax.swing.JButton();
+        btnProductDelete = new javax.swing.JButton();
+        btnProductReset = new javax.swing.JButton();
         comboBoxSupplier = new javax.swing.JComboBox<>();
         comboBoxCatagory = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -142,28 +143,28 @@ public class ProductView extends javax.swing.JFrame {
 
         jLabel7.setText("Catagory ID :");
 
-        btnCatagorySave.setText("Save");
-        btnCatagorySave.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnProductSave.setText("Save");
+        btnProductSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCatagorySaveMouseClicked(evt);
+                btnProductSaveMouseClicked(evt);
             }
         });
 
-        btnCatagoryUpdate.setText("Update");
-        btnCatagoryUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnProductUpdate.setText("Update");
+        btnProductUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCatagoryUpdateActionPerformed(evt);
+                btnProductUpdateActionPerformed(evt);
             }
         });
 
-        btnCatagoryDelete.setText("Delete");
-        btnCatagoryDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnProductDelete.setText("Delete");
+        btnProductDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCatagoryDeleteActionPerformed(evt);
+                btnProductDeleteActionPerformed(evt);
             }
         });
 
-        btnCatagoryReset.setText("Reset");
+        btnProductReset.setText("Reset");
 
         comboBoxSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxSupplier.addActionListener(new java.awt.event.ActionListener() {
@@ -214,13 +215,13 @@ public class ProductView extends javax.swing.JFrame {
                                 .addGap(12, 12, 12))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addComponent(btnCatagorySave)
+                        .addComponent(btnProductSave)
                         .addGap(115, 115, 115)
-                        .addComponent(btnCatagoryUpdate)
+                        .addComponent(btnProductUpdate)
                         .addGap(128, 128, 128)
-                        .addComponent(btnCatagoryDelete)
+                        .addComponent(btnProductDelete)
                         .addGap(152, 152, 152)
-                        .addComponent(btnCatagoryReset)))
+                        .addComponent(btnProductReset)))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -246,10 +247,10 @@ public class ProductView extends javax.swing.JFrame {
                     .addComponent(comboBoxCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCatagorySave)
-                    .addComponent(btnCatagoryUpdate)
-                    .addComponent(btnCatagoryDelete)
-                    .addComponent(btnCatagoryReset))
+                    .addComponent(btnProductSave)
+                    .addComponent(btnProductUpdate)
+                    .addComponent(btnProductDelete)
+                    .addComponent(btnProductReset))
                 .addGap(21, 21, 21))
         );
 
@@ -298,27 +299,27 @@ public class ProductView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductPriceActionPerformed
 
-    private void btnCatagoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoryDeleteActionPerformed
+    private void btnProductDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCatagoryDeleteActionPerformed
+    }//GEN-LAST:event_btnProductDeleteActionPerformed
 
-    private void btnCatagoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoryUpdateActionPerformed
+    private void btnProductUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCatagoryUpdateActionPerformed
+    }//GEN-LAST:event_btnProductUpdateActionPerformed
 
     private void comboBoxSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSupplierActionPerformed
 
-    private void btnCatagorySaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatagorySaveMouseClicked
+    private void btnProductSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductSaveMouseClicked
         // TODO add your handling code here:
-        Product product = new Product(
-                txtProductName.getText(),
-                txtProductPrice.getText(),
-                txtProductQuantity.getText()
-               
-        );
-    }//GEN-LAST:event_btnCatagorySaveMouseClicked
+        
+              String name=  txtProductName.getText().trim();
+              double price=  Double.parseDouble(txtProductPrice.getText());
+            double quality=    Double.parseDouble(txtProductQuantity.getText());
+          String catagoryId=   Integer.parseInt(comboBoxCatagory.getItemAt(WIDTH)),
+        
+    }//GEN-LAST:event_btnProductSaveMouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,10 +357,10 @@ public class ProductView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCatagoryDelete;
-    private javax.swing.JButton btnCatagoryReset;
-    private javax.swing.JButton btnCatagorySave;
-    private javax.swing.JButton btnCatagoryUpdate;
+    private javax.swing.JButton btnProductDelete;
+    private javax.swing.JButton btnProductReset;
+    private javax.swing.JButton btnProductSave;
+    private javax.swing.JButton btnProductUpdate;
     private javax.swing.JComboBox<String> comboBoxCatagory;
     private javax.swing.JComboBox<String> comboBoxSupplier;
     private javax.swing.JLabel jLabel1;

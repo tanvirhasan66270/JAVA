@@ -136,13 +136,13 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-                          <Component id="btnCatagorySave" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductSave" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                          <Component id="btnCatagoryUpdate" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductUpdate" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                          <Component id="btnCatagoryDelete" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductDelete" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="btnCatagoryReset" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductReset" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="151" max="32767" attributes="0"/>
@@ -175,10 +175,10 @@
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCatagorySave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCatagoryUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCatagoryDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCatagoryReset" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProductSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProductUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProductDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProductReset" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
@@ -233,31 +233,31 @@
             <Property name="text" type="java.lang.String" value="Catagory ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCatagorySave">
+        <Component class="javax.swing.JButton" name="btnProductSave">
           <Properties>
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCatagorySaveMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnProductSaveMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCatagoryUpdate">
+        <Component class="javax.swing.JButton" name="btnProductUpdate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Update"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatagoryUpdateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductUpdateActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCatagoryDelete">
+        <Component class="javax.swing.JButton" name="btnProductDelete">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatagoryDeleteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductDeleteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCatagoryReset">
+        <Component class="javax.swing.JButton" name="btnProductReset">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reset"/>
           </Properties>
