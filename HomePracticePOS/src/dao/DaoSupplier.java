@@ -147,4 +147,25 @@ public class DaoSupplier implements DaoService<Supplier> {
         return list;
 
     }
+    
+    public  int getIdByNameSupplier(String supplierName){
+    sql="select id from supplier where supplierName=?";
+    
+    int id=0;
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setString(1, supplierName);
+            rs=ps.executeQuery();
+            while(rs.next()){
+            
+                id=rs.getInt("id");
+            
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    
+    }
 }

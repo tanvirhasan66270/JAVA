@@ -9,7 +9,10 @@ import Model.Product;
 import dao.DaoCatagoy;
 import dao.DaoProduct;
 import dao.DaoSupplier;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +32,22 @@ public class ProductView extends javax.swing.JFrame {
         clear();
         LoadCatagory();
         LoadSupplier();
+        showAllProduct();
+
+        comboBoxCatagory.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                getCatIdByName();
+            }
+        });
+
+        comboBoxSupplier.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                getSupIdByName();
+            }
+        });
+
     }
 
     public void LoadCatagory() {
@@ -36,8 +55,8 @@ public class ProductView extends javax.swing.JFrame {
         comboBoxCatagory.removeAllItems();
         comboBoxCatagory.addItem("----select-----");
 
-        for (String Product : prodctName) {
-            comboBoxCatagory.addItem(Product);
+        for (String ProductC : prodctName) {
+            comboBoxCatagory.addItem(ProductC);
         }
 
     }
@@ -45,9 +64,9 @@ public class ProductView extends javax.swing.JFrame {
     public void LoadSupplier() {
         List<String> prodctName = daoSupplier.getAllSupplierName();
         comboBoxSupplier.removeAllItems();
-        comboBoxCatagory.addItem("----select-----");
-        for (String Product : prodctName) {
-            comboBoxSupplier.addItem(Product);
+        comboBoxSupplier.addItem("----select-----");
+        for (String ProductS : prodctName) {
+            comboBoxSupplier.addItem(ProductS);
         }
 
     }
@@ -57,6 +76,47 @@ public class ProductView extends javax.swing.JFrame {
         txtProductName.setText(" ");
         txtProductPrice.setText(" ");
         txtProductQuantity.setText(" ");
+
+    }
+
+    public void showAllProduct() {
+        String[] coloums = {"ID", "Name", "Price", "Quantity", "Supplier ID", "Catagory ID"};
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(coloums);
+        tblProduct.setModel(model);
+
+        List<Product> list = daoProduct.findAll();
+
+        for (Product p : list) {
+
+            model.addRow(new Object[]{
+                p.getId(),
+                p.getName(),
+                p.getPrice(),
+                p.getQuantity(),
+                p.getCatagoryName(),
+                p.getSupplierName()
+
+            });
+        }
+
+    }
+
+    public int getCatIdByName() {
+        String catName = comboBoxCatagory.getSelectedItem().toString();
+        int id = daoCatagoy.getIdByNameCatagory(catName);
+         System.out.println("id" + id);
+        return id;
+       
+    }
+
+    public int getSupIdByName() {
+
+        String SupName = comboBoxSupplier.getSelectedItem().toString();
+        int id = daoSupplier.getIdByNameSupplier(SupName);
+        System.out.println("id" + id);
+        return id;
 
     }
 
@@ -82,10 +142,10 @@ public class ProductView extends javax.swing.JFrame {
         txtProductQuantity = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnCatagorySave = new javax.swing.JButton();
-        btnCatagoryUpdate = new javax.swing.JButton();
-        btnCatagoryDelete = new javax.swing.JButton();
-        btnCatagoryReset = new javax.swing.JButton();
+        btnProductSave = new javax.swing.JButton();
+        btnProductUpdate = new javax.swing.JButton();
+        btnProductDelete = new javax.swing.JButton();
+        btnProductReset = new javax.swing.JButton();
         comboBoxSupplier = new javax.swing.JComboBox<>();
         comboBoxCatagory = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -142,28 +202,43 @@ public class ProductView extends javax.swing.JFrame {
 
         jLabel7.setText("Catagory ID :");
 
-        btnCatagorySave.setText("Save");
-        btnCatagorySave.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnProductSave.setText("Save");
+        btnProductSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCatagorySaveMouseClicked(evt);
+                btnProductSaveMouseClicked(evt);
             }
         });
 
-        btnCatagoryUpdate.setText("Update");
-        btnCatagoryUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnProductUpdate.setText("Update");
+        btnProductUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProductUpdateMouseClicked(evt);
+            }
+        });
+        btnProductUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCatagoryUpdateActionPerformed(evt);
+                btnProductUpdateActionPerformed(evt);
             }
         });
 
-        btnCatagoryDelete.setText("Delete");
-        btnCatagoryDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnProductDelete.setText("Delete");
+        btnProductDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProductDeleteMouseClicked(evt);
+            }
+        });
+        btnProductDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCatagoryDeleteActionPerformed(evt);
+                btnProductDeleteActionPerformed(evt);
             }
         });
 
-        btnCatagoryReset.setText("Reset");
+        btnProductReset.setText("Reset");
+        btnProductReset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProductResetMouseClicked(evt);
+            }
+        });
 
         comboBoxSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxSupplier.addActionListener(new java.awt.event.ActionListener() {
@@ -179,49 +254,47 @@ public class ProductView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxSupplier, 0, 251, Short.MAX_VALUE)
-                            .addComponent(txtProductPrice))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(119, 119, 119)
+                                .addComponent(btnProductSave)
+                                .addGap(115, 115, 115)
+                                .addComponent(btnProductUpdate)
+                                .addGap(128, 128, 128)
+                                .addComponent(btnProductDelete)
+                                .addGap(152, 152, 152)
+                                .addComponent(btnProductReset))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(comboBoxCatagory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(12, 12, 12))))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(comboBoxCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(93, 93, 93)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(comboBoxSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(btnCatagorySave)
-                        .addGap(115, 115, 115)
-                        .addComponent(btnCatagoryUpdate)
-                        .addGap(128, 128, 128)
-                        .addComponent(btnCatagoryDelete)
-                        .addGap(152, 152, 152)
-                        .addComponent(btnCatagoryReset)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(301, 301, 301)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,24 +305,24 @@ public class ProductView extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboBoxSupplier)
-                    .addComponent(comboBoxCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCatagorySave)
-                    .addComponent(btnCatagoryUpdate)
-                    .addComponent(btnCatagoryDelete)
-                    .addComponent(btnCatagoryReset))
+                    .addComponent(jLabel7)
+                    .addComponent(comboBoxCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProductSave)
+                    .addComponent(btnProductUpdate)
+                    .addComponent(btnProductDelete)
+                    .addComponent(btnProductReset))
                 .addGap(21, 21, 21))
         );
 
@@ -265,6 +338,11 @@ public class ProductView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProduct);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -283,7 +361,7 @@ public class ProductView extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -298,27 +376,83 @@ public class ProductView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductPriceActionPerformed
 
-    private void btnCatagoryDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoryDeleteActionPerformed
+    private void btnProductDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCatagoryDeleteActionPerformed
+    }//GEN-LAST:event_btnProductDeleteActionPerformed
 
-    private void btnCatagoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatagoryUpdateActionPerformed
+    private void btnProductUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCatagoryUpdateActionPerformed
+    }//GEN-LAST:event_btnProductUpdateActionPerformed
 
     private void comboBoxSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSupplierActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_comboBoxSupplierActionPerformed
 
-    private void btnCatagorySaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatagorySaveMouseClicked
+    private void btnProductSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductSaveMouseClicked
         // TODO add your handling code here:
-        Product product = new Product(
-                txtProductName.getText(),
-                txtProductPrice.getText(),
-                txtProductQuantity.getText()
-               
-        );
-    }//GEN-LAST:event_btnCatagorySaveMouseClicked
+        String name = txtProductName.getText().trim();
+        double price = Double.parseDouble(txtProductPrice.getText().trim());
+        double quantity = Double.parseDouble(txtProductQuantity.getText());
+        int catagoryP = getCatIdByName();
+        int supplierP = getSupIdByName();
+
+        Product p = new Product(name, price, quantity, catagoryP, supplierP);
+        // System.out.println(p);
+        daoProduct.save(p);
+        clear();
+        showAllProduct();
+    }//GEN-LAST:event_btnProductSaveMouseClicked
+
+    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
+        // TODO add your handling code here:
+        int rowIndex = tblProduct.getSelectedRow();
+
+        String id = tblProduct.getModel().getValueAt(rowIndex, 0).toString();
+        String name = tblProduct.getModel().getValueAt(rowIndex, 1).toString();
+        String price = tblProduct.getModel().getValueAt(rowIndex, 2).toString();
+        String quantity = tblProduct.getModel().getValueAt(rowIndex, 3).toString();
+        String catagoryname = tblProduct.getModel().getValueAt(rowIndex, 5).toString();
+        String Suppliername = tblProduct.getModel().getValueAt(rowIndex, 4).toString();
+
+        txtProductId.setText(id);
+        txtProductName.setText(name);
+        txtProductPrice.setText(price);
+        txtProductQuantity.setText(quantity);
+        comboBoxCatagory.setSelectedItem(catagoryname);
+        comboBoxSupplier.setSelectedItem(Suppliername);
+    }//GEN-LAST:event_tblProductMouseClicked
+
+    private void btnProductUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductUpdateMouseClicked
+        // TODO add your handling code here:
+        int id = Integer.parseInt(txtProductId.getText());
+        String name = txtProductName.getText();
+        double price = Double.parseDouble(txtProductPrice.getText());
+        double quantity = Double.parseDouble(txtProductQuantity.getText());
+        int catagoryP = getCatIdByName();
+        int supplierP = getSupIdByName();
+
+        Product p = new Product(id, name, price, quantity, catagoryP, supplierP);
+        // System.out.println(p);
+        daoProduct.update(p);
+        clear();
+        showAllProduct();
+
+    }//GEN-LAST:event_btnProductUpdateMouseClicked
+
+    private void btnProductDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductDeleteMouseClicked
+        // TODO add your handling code here:
+
+        int id = Integer.parseInt(txtProductId.getText());
+        daoProduct.delete(id);
+        clear();
+        showAllProduct();
+    }//GEN-LAST:event_btnProductDeleteMouseClicked
+
+    private void btnProductResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductResetMouseClicked
+        // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_btnProductResetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,10 +490,10 @@ public class ProductView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCatagoryDelete;
-    private javax.swing.JButton btnCatagoryReset;
-    private javax.swing.JButton btnCatagorySave;
-    private javax.swing.JButton btnCatagoryUpdate;
+    private javax.swing.JButton btnProductDelete;
+    private javax.swing.JButton btnProductReset;
+    private javax.swing.JButton btnProductSave;
+    private javax.swing.JButton btnProductUpdate;
     private javax.swing.JComboBox<String> comboBoxCatagory;
     private javax.swing.JComboBox<String> comboBoxSupplier;
     private javax.swing.JLabel jLabel1;

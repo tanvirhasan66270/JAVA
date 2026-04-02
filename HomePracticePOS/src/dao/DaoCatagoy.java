@@ -2,6 +2,7 @@ package dao;
 
 import Model.Catagory;
 import Model.DaoService;
+import Model.Product;
 import Util.DbUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,7 +131,32 @@ public class DaoCatagoy implements DaoService<Catagory> {
         return list;
 
     }
-    
-    
+
+    public int getIdByNameCatagory(String CatagoryName) {
+
+        sql = "select id from catagory where name=?";
+
+        int id = 0;
+
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setString(1, CatagoryName);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                id = rs.getInt("id");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+
+    }
+
+    public void save(Product p) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
