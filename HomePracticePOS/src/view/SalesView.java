@@ -234,7 +234,7 @@ public class SalesView extends javax.swing.JFrame {
         double discount=Double.parseDouble(txtSalesDiscount.getText().trim());
         double actualPrice=Double.parseDouble(txtSalesActualPrice.getText().trim());
         
-        sales=new Sales(productName, unitPrice, quantity, totalPrice, discount, actualPrice);
+        sales=new Sales(unitPrice, quantity, totalPrice, discount, actualPrice);
         daoSales.save(sales);
         System.out.println(daoSales);
         Clear();
