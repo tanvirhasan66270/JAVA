@@ -4,7 +4,7 @@
  */
 package dao;
 
-import Model.DaoService;
+import Service.DaoService;
 import Model.Sales;
 import Util.DbUtil;
 import Util.SalesUtil;

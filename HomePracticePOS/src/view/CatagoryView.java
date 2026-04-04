@@ -5,8 +5,8 @@
 package view;
 
 import Model.Catagory;
-import dao.DaoCatagoy;
-import java.util.ArrayList;
+import dao.DaoCatagory;
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,9 +14,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Dell
  */
-public class CatagoryView extends javax.swing.JFrame {
+public final class CatagoryView extends javax.swing.JFrame {
 
-    DaoCatagoy daoCatagoy = new DaoCatagoy();
+    DaoCatagory daoCatagoy = new DaoCatagory();
     Catagory cat;
 
     /**
@@ -41,7 +41,7 @@ public class CatagoryView extends javax.swing.JFrame {
         model.setColumnIdentifiers(colums);
         tblCatagoryView.setModel(model);
 
-        List<Catagory> list = daoCatagoy.findAll();
+        List<Catagory> list = daoCatagoy.findAll() ;
 
         for (Catagory c : list) {
             model.addRow(new Object[]{

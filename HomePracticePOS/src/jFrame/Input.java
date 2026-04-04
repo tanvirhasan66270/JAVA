@@ -5,7 +5,7 @@
 package jFrame;
 
 import Model.Catagory;
-import dao.DaoCatagoy;
+import dao.DaoCatagory;
 import Model.Supplier;
 import dao.DaoSupplier;
 /**
@@ -14,7 +14,7 @@ import dao.DaoSupplier;
  */
 public class Input extends javax.swing.JFrame {
     Catagory c;
-    DaoCatagoy dc;
+    DaoCatagory dc;
     
 Supplier s;
 DaoSupplier ds;
@@ -228,7 +228,7 @@ DaoSupplier ds;
         // TODO add your handling code here:
         
         c=new Catagory(catagoryname.getText());
-        dc=new DaoCatagoy();
+        dc=new DaoCatagory();
         dc.save(c);
         
     }//GEN-LAST:event_inputMouseClicked

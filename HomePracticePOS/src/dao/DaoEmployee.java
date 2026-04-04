@@ -1,7 +1,7 @@
 package dao;
 
 
-import Model.DaoService;
+import Service.DaoService;
 import Model.Employee;
 import Util.DbUtil;
 import java.sql.PreparedStatement;

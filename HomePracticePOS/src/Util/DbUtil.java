@@ -20,19 +20,17 @@ import java.util.logging.Logger;
 public class DbUtil {
 
     private Connection con = null;
-    private String url = "jdbc:mysql://localhost:3306/jeetanvir?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    private String userName = "root";
-    private String password = "1234";
-    private String drive = "com.mysql.cj.jdbc.Driver";
+    private final String url = "jdbc:mysql://localhost:3306/jeetanvir?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private final String userName="root";
+    private final String password = "1234";
+    private final String drive = "com.mysql.cj.jdbc.Driver";
 
     public Connection getCon() {
 
         try {
             Class.forName(drive);
-            con =DriverManager.getConnection(url, "root", password);
-        } catch (SQLException ex) {
-            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            con =DriverManager.getConnection(url,userName , password);
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return con;

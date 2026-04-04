@@ -1,10 +1,10 @@
 package dao;
 
 import Model.Catagory;
-import Model.DaoService;
+import Service.DaoService;
 import Model.Product;
 import Util.DbUtil;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class DaoCatagoy implements DaoService<Catagory> {
+public class DaoCatagory implements DaoService<Catagory> {
 
     DbUtil util = new DbUtil();
     private PreparedStatement ps;
@@ -37,7 +37,7 @@ public class DaoCatagoy implements DaoService<Catagory> {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Object not Saved");
-            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoCatagory.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -61,7 +61,7 @@ public class DaoCatagoy implements DaoService<Catagory> {
             ps.close();
             util.getCon().close();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoCatagory.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
@@ -81,7 +81,7 @@ public class DaoCatagoy implements DaoService<Catagory> {
         } catch (SQLException ex) {
             JOptionPane.showInternalMessageDialog(null, "Input Update");
 
-            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoCatagory.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -104,7 +104,7 @@ public class DaoCatagoy implements DaoService<Catagory> {
             JOptionPane.showMessageDialog(null, "Information delete ");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Information not delete ");
-            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoCatagory.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -149,14 +149,12 @@ public class DaoCatagoy implements DaoService<Catagory> {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoCatagoy.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoCatagory.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
 
     }
 
-    public void save(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
 }

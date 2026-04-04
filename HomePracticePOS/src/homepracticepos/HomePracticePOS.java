@@ -3,7 +3,7 @@ package homepracticepos;
 
 import Model.Catagory;
 import Model.Supplier;
-import dao.DaoCatagoy;
+import dao.DaoCatagory;
 import dao.DaoSupplier;
 
 

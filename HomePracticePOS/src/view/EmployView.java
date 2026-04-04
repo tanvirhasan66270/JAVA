@@ -6,8 +6,8 @@ package view;
 
 import Model.Employee;
 import dao.DaoEmployee;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,7 +30,7 @@ public class EmployView extends javax.swing.JFrame {
         clear();
     }
     
-    public void clear() {
+    public final void clear() {
         txtEmployeeId.setText(" ");
         txtEmployeeName.setText(" ");
         txtEmployeeSalary.setText(" ");
@@ -38,7 +38,7 @@ public class EmployView extends javax.swing.JFrame {
         
     }
     
-    public void showAllData() {
+    public final void showAllData() {
         
         String[] colums = {"ID", "Name", "Salary", "Email"};
         
