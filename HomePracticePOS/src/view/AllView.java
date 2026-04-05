@@ -4,6 +4,8 @@
  */
 package view;
 
+import Model.Sales;
+
 /**
  *
  * @author Dell
@@ -15,6 +17,12 @@ public class AllView extends javax.swing.JFrame {
      */
     public AllView() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+    }
+
+    void showAllAgain() {
+
     }
 
     /**
@@ -31,7 +39,7 @@ public class AllView extends javax.swing.JFrame {
         buttonCayagory = new javax.swing.JButton();
         buttonSupplier = new javax.swing.JButton();
         buttonProduct = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnSales = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +82,13 @@ public class AllView extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("jButton5");
+        btnSales.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSales.setText("Sales");
+        btnSales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalesMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,7 +109,7 @@ public class AllView extends javax.swing.JFrame {
                         .addComponent(buttonCayagory, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(280, 280, 280)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSales, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,7 +127,7 @@ public class AllView extends javax.swing.JFrame {
                         .addGap(172, 172, 172)
                         .addComponent(buttonProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSales, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -138,29 +152,36 @@ public class AllView extends javax.swing.JFrame {
 
     private void buttonEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEmployeeMouseClicked
         // TODO add your handling code here:
-        EmployView ev=new EmployView();
+        EmployView ev = new EmployView();
         ev.setVisible(true);
     }//GEN-LAST:event_buttonEmployeeMouseClicked
 
     private void buttonCayagoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCayagoryMouseClicked
         // TODO add your handling code here:
-        
-        CatagoryView cv=new CatagoryView();
+
+        CatagoryView cv = new CatagoryView();
         cv.setVisible(true);
     }//GEN-LAST:event_buttonCayagoryMouseClicked
 
     private void buttonSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSupplierMouseClicked
         // TODO add your handling code here:
-        
-        SuppliewView sv=new SuppliewView();
+
+        SuppliewView sv = new SuppliewView();
         sv.setVisible(true);
     }//GEN-LAST:event_buttonSupplierMouseClicked
 
     private void buttonProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductMouseClicked
         // TODO add your handling code here:
-        ProductView pv=new ProductView();
+        ProductView pv = new ProductView();
         pv.setVisible(true);
     }//GEN-LAST:event_buttonProductMouseClicked
+
+    private void btnSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseClicked
+        // TODO add your handling code here:
+        SalesView sv = new SalesView();
+        sv.setVisible(true);
+
+    }//GEN-LAST:event_btnSalesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,11 +219,11 @@ public class AllView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSales;
     private javax.swing.JButton buttonCayagory;
     private javax.swing.JButton buttonEmployee;
     private javax.swing.JButton buttonProduct;
     private javax.swing.JButton buttonSupplier;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

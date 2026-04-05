@@ -23,6 +23,8 @@ public class SuppliewView extends javax.swing.JFrame {
      */
     public SuppliewView() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         clear();
         showAllData();
     }
@@ -400,16 +402,16 @@ public class SuppliewView extends javax.swing.JFrame {
 
     private void btnUpdateSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateSupplierMouseClicked
         // TODO add your handling code here:
-        int id=Integer.parseInt(txtSupplierId.getText());
-        String name=txtSupplierName.getText();
-        String number=txtSupplierCellNumber.getText();
-        String contactParson=txtSupplierContactParsoneName.getText();
-        String contactCell=txtContactParsoneCell.getText();
-        String address=txtSupplierAddress.getText();
-        
-        Supplier s=new Supplier(id, name, number, 
+        int id = Integer.parseInt(txtSupplierId.getText());
+        String name = txtSupplierName.getText();
+        String number = txtSupplierCellNumber.getText();
+        String contactParson = txtSupplierContactParsoneName.getText();
+        String contactCell = txtContactParsoneCell.getText();
+        String address = txtSupplierAddress.getText();
+
+        Supplier s = new Supplier(id, name, number,
                 contactParson, contactParson, address);
-        
+
         daoSupplier.update(s);
         clear();
         showAllData();

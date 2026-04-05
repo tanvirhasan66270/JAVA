@@ -24,6 +24,8 @@ public final class CatagoryView extends javax.swing.JFrame {
      */
     public CatagoryView() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         clear();
         showAllData();
     }
@@ -41,7 +43,7 @@ public final class CatagoryView extends javax.swing.JFrame {
         model.setColumnIdentifiers(colums);
         tblCatagoryView.setModel(model);
 
-        List<Catagory> list = daoCatagoy.findAll() ;
+        List<Catagory> list = daoCatagoy.findAll();
 
         for (Catagory c : list) {
             model.addRow(new Object[]{
@@ -267,10 +269,10 @@ public final class CatagoryView extends javax.swing.JFrame {
 
     private void btnCatagoryUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatagoryUpdateMouseClicked
         // TODO add your handling code here:
-        int id=Integer.parseInt(txtCatagoryId.getText());
-        String name=txtCatagoryName.getText();
-        
-        Catagory c=new Catagory(id, name);
+        int id = Integer.parseInt(txtCatagoryId.getText());
+        String name = txtCatagoryName.getText();
+
+        Catagory c = new Catagory(id, name);
         daoCatagoy.update(c);
         clear();
         showAllData();
@@ -278,18 +280,18 @@ public final class CatagoryView extends javax.swing.JFrame {
 
     private void tblCatagoryViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCatagoryViewMouseClicked
         // TODO add your handling code here:
-        int rowIndex=tblCatagoryView.getSelectedRow();
-        String id=tblCatagoryView.getModel().getValueAt(rowIndex, 0).toString();
-        String name=tblCatagoryView.getModel().getValueAt(rowIndex, 1).toString();
-        
+        int rowIndex = tblCatagoryView.getSelectedRow();
+        String id = tblCatagoryView.getModel().getValueAt(rowIndex, 0).toString();
+        String name = tblCatagoryView.getModel().getValueAt(rowIndex, 1).toString();
+
         txtCatagoryId.setText(id);
         txtCatagoryName.setText(name);
     }//GEN-LAST:event_tblCatagoryViewMouseClicked
 
     private void btnCatagoryDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatagoryDeleteMouseClicked
         // TODO add your handling code here:
-        
-        int id=Integer.parseInt(txtCatagoryId.getText());
+
+        int id = Integer.parseInt(txtCatagoryId.getText());
         daoCatagoy.delete(id);
         clear();
         showAllData();

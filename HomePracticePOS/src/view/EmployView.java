@@ -7,17 +7,15 @@ package view;
 import Model.Employee;
 import dao.DaoEmployee;
 
-
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author Dell
  */
 public class EmployView extends javax.swing.JFrame {
-    
+
     DaoEmployee de = new DaoEmployee();
     Employee e;
 
@@ -26,27 +24,29 @@ public class EmployView extends javax.swing.JFrame {
      */
     public EmployView() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         showAllData();
         clear();
     }
-    
+
     public final void clear() {
         txtEmployeeId.setText(" ");
         txtEmployeeName.setText(" ");
         txtEmployeeSalary.setText(" ");
         txtEmployeeEmail.setText(" ");
-        
+
     }
-    
+
     public final void showAllData() {
-        
+
         String[] colums = {"ID", "Name", "Salary", "Email"};
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(colums);
-        
+
         tblEmployeeTable.setModel(model);
-        
+
         List<Employee> list = de.findAll();
         for (Employee e : list) {
             model.addRow(new Object[]{
@@ -283,7 +283,7 @@ public class EmployView extends javax.swing.JFrame {
                 txtEmployeeName.getText().trim(),
                 Double.parseDouble(txtEmployeeSalary.getText()),
                 txtEmployeeEmail.getText());
-        
+
         de.save(e);
         clear();
         showAllData();
@@ -299,9 +299,9 @@ public class EmployView extends javax.swing.JFrame {
         String name = txtEmployeeName.getText();
         double salary = Double.parseDouble(txtEmployeeSalary.getText());
         String email = txtEmployeeEmail.getText();
-        
+
         Employee e = new Employee(id, name, salary, email);
-        
+
         de.update(e);
         clear();
         showAllData();
@@ -316,7 +316,7 @@ public class EmployView extends javax.swing.JFrame {
         String name = tblEmployeeTable.getModel().getValueAt(showMassage, 1).toString();
         String salary = tblEmployeeTable.getModel().getValueAt(showMassage, 2).toString();
         String email = tblEmployeeTable.getModel().getValueAt(showMassage, 3).toString();
-        
+
         txtEmployeeId.setText(id);
         txtEmployeeName.setText(name);
         txtEmployeeSalary.setText(salary);
@@ -326,7 +326,7 @@ public class EmployView extends javax.swing.JFrame {
     private void btnButtonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnButtonDeleteMouseClicked
         // TODO add your handling code here:
         int id = Integer.parseInt(txtEmployeeId.getText());
-        
+
         de.delete(id);
         clear();
         showAllData();

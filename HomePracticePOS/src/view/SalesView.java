@@ -12,25 +12,29 @@ import dao.DaoSales;
  * @author Dell
  */
 public class SalesView extends javax.swing.JFrame {
-    DaoSales daoSales=new DaoSales();
-   Sales sales;
+
+    DaoSales daoSales = new DaoSales();
+    Sales sales;
+
     /**
      * Creates new form Sales
      */
     public SalesView() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         Clear();
     }
-    
-    void Clear(){
-    txtSalesID.setText(" ");
+
+    void Clear() {
+        txtSalesID.setText(" ");
 //    txtSalesProductName.setText(" ");
-    txtSalesUnitPrice.setText(" ");
-    txtSalesQuantity.setText(" ");
-    txtSalesTotalPrice.setText(" ");
-    txtSalesDiscount.setText(" ");
-    txtSalesActualPrice.setText(" ");
-    
+        txtSalesUnitPrice.setText(" ");
+        txtSalesQuantity.setText(" ");
+        txtSalesTotalPrice.setText(" ");
+        txtSalesDiscount.setText(" ");
+        txtSalesActualPrice.setText(" ");
+
     }
 
     /**
@@ -226,14 +230,13 @@ public class SalesView extends javax.swing.JFrame {
 
     private void btnSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseClicked
         // TODO add your handling code here:
-        
-        
-        double unitPrice=Double.parseDouble(txtSalesUnitPrice.getText().trim());
-        double quantity=Double.parseDouble(txtSalesQuantity.getText().trim());
-        double totalPrice=Double.parseDouble(txtSalesTotalPrice.getText().trim());
-        double discount=Double.parseDouble(txtSalesDiscount.getText().trim());
-        double actualPrice=Double.parseDouble(txtSalesActualPrice.getText().trim());
-        
+
+        double unitPrice = Double.parseDouble(txtSalesUnitPrice.getText().trim());
+        double quantity = Double.parseDouble(txtSalesQuantity.getText().trim());
+        double totalPrice = Double.parseDouble(txtSalesTotalPrice.getText().trim());
+        double discount = Double.parseDouble(txtSalesDiscount.getText().trim());
+        double actualPrice = Double.parseDouble(txtSalesActualPrice.getText().trim());
+
 //   sales=new Sales(unitPrice, quantity, totalPrice, discount, actualPrice);
         daoSales.save(sales);
         System.out.println(daoSales);

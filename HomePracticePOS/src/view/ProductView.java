@@ -18,15 +18,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Dell
  */
 public final class ProductView extends javax.swing.JFrame {
+
     DaoCatagory daoCatagoy = new DaoCatagory();
     DaoSupplier daoSupplier = new DaoSupplier();
     DaoProduct daoProduct = new DaoProduct();
+
     /**
      * Creates new form ProductView
      */
     public ProductView() {
         initComponents();
-        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         clear();
         LoadCatagory();
         LoadSupplier();
@@ -47,6 +50,7 @@ public final class ProductView extends javax.swing.JFrame {
         });
 
     }
+
     public void LoadCatagory() {
         List<String> prodctName = daoCatagoy.getAllCatagoryName();
         comboBoxProductCatagory.removeAllItems();
@@ -103,9 +107,9 @@ public final class ProductView extends javax.swing.JFrame {
     public int getCatIdByName() {
         String catName = comboBoxProductCatagory.getSelectedItem().toString();
         int id = daoCatagoy.getIdByNameCatagory(catName);
-         System.out.println("id" + id);
+        System.out.println("id" + id);
         return id;
-       
+
     }
 
     public int getSupIdByName() {
@@ -114,11 +118,7 @@ public final class ProductView extends javax.swing.JFrame {
         int id = daoSupplier.getIdByNameSupplier(SupName);
         System.out.println("id" + id);
         return id;
-
     }
-
-   
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -350,7 +350,7 @@ public final class ProductView extends javax.swing.JFrame {
 
     private void SaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveMouseClicked
         // TODO add your handling code here:
-        
+
         String name = txtProductName.getText().trim();
         double price = Double.parseDouble(txtProductPrice.getText().trim());
         double quantity = Double.parseDouble(txtProductQuantity.getText());
