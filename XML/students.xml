@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+
+<java>
+    <student>
+        <id>1</id>
+        <name>Badrul</name>
+        <age> 25 </age>
+    </student>
+    
+     <student>
+        <id>2</id>
+        <name>Miskat</name>
+        <age> 22 </age>
+    </student>
+    
+    </java>
+
