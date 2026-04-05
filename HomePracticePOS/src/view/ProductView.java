@@ -69,7 +69,7 @@ public final class ProductView extends javax.swing.JFrame {
         for (String ProductS : prodctName) {
             comboBoxSupplierProduct.addItem(ProductS);
         }
-
+        
     }
 
     void clear() {
@@ -77,6 +77,8 @@ public final class ProductView extends javax.swing.JFrame {
         txtProductName.setText(" ");
         txtProductPrice.setText(" ");
         txtProductQuantity.setText(" ");
+        comboBoxProductCatagory.setSelectedItem("----select-----");
+        comboBoxSupplierProduct.setSelectedItem("----select-----");
 
     }
 
@@ -107,7 +109,7 @@ public final class ProductView extends javax.swing.JFrame {
     public int getCatIdByName() {
         String catName = comboBoxProductCatagory.getSelectedItem().toString();
         int id = daoCatagoy.getIdByNameCatagory(catName);
-        System.out.println("id" + id);
+//        System.out.println("id" + id);
         return id;
 
     }
@@ -116,7 +118,7 @@ public final class ProductView extends javax.swing.JFrame {
 
         String SupName = comboBoxSupplierProduct.getSelectedItem().toString();
         int id = daoSupplier.getIdByNameSupplier(SupName);
-        System.out.println("id" + id);
+//        System.out.println("id" + id);
         return id;
     }
 
@@ -200,6 +202,11 @@ public final class ProductView extends javax.swing.JFrame {
         });
 
         jButton2.setText("Update");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -207,6 +214,11 @@ public final class ProductView extends javax.swing.JFrame {
         });
 
         jButton3.setText("Delete");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -214,6 +226,11 @@ public final class ProductView extends javax.swing.JFrame {
         });
 
         jButton4.setText("Reset");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Name :");
@@ -312,6 +329,11 @@ public final class ProductView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProduct);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,6 +385,56 @@ public final class ProductView extends javax.swing.JFrame {
         clear();
         showAllProduct();
     }//GEN-LAST:event_SaveMouseClicked
+
+    private void tblProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductMouseClicked
+        // TODO add your handling code here:
+
+        int rowIndex = tblProduct.getSelectedRow();
+        String id = tblProduct.getModel().getValueAt(rowIndex, 0).toString();
+        String name = tblProduct.getModel().getValueAt(rowIndex, 1).toString();
+        String price = tblProduct.getModel().getValueAt(rowIndex, 2).toString();
+        String quantity = tblProduct.getModel().getValueAt(rowIndex, 3).toString();
+        String catagoryname = tblProduct.getModel().getValueAt(rowIndex, 5).toString();
+        String Suppliername = tblProduct.getModel().getValueAt(rowIndex, 4).toString();
+
+        txtProductId.setText(id);
+        txtProductName.setText(name);
+        txtProductPrice.setText(price);
+        txtProductQuantity.setText(quantity);
+        comboBoxProductCatagory.setSelectedItem(catagoryname);
+        comboBoxSupplierProduct.setSelectedItem(Suppliername);
+
+    }//GEN-LAST:event_tblProductMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        int id = Integer.parseInt(txtProductId.getText());
+        String name = txtProductName.getText();
+        double price = Double.parseDouble(txtProductPrice.getText());
+        double quantity = Double.parseDouble(txtProductQuantity.getText());
+        int catagoryP = getCatIdByName();
+        int supplierP = getSupIdByName();
+
+        Product p = new Product(id, name, price, quantity, catagoryP, supplierP);
+        // System.out.println(p);
+        daoProduct.update(p);
+        clear();
+        showAllProduct();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+
+        int id = Integer.parseInt(txtProductId.getText());
+        daoProduct.delete(id);
+        clear();
+        showAllProduct();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+          clear();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

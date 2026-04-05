@@ -11,6 +11,7 @@ import Util.SalesUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,16 +27,16 @@ public class DaoSales implements DaoService<Sales> {
     PreparedStatement ps;
     ResultSet rs;
     String sql;
-    
-    SalesUtil su=new SalesUtil();
+
+    SalesUtil su = new SalesUtil();
 
     @Override
     public void save(Sales e) {
         sql = "insert into sales (productName,unitPrice,quantity,totalPrice,discount,actualPrice) values (?,?,?,?,?,?)";
 
-        double totalPrice=su.getTotalPrice(e.getUnitPrice(), e.getQuantity());
-        double discountAmount=su.getDiscountAmount(totalPrice, e.getDiscount());
-        double actualPrice=su.getTotalPrice(totalPrice, discountAmount);
+        double totalPrice = su.getTotalPrice(e.getUnitPrice(), e.getQuantity());
+        double discountAmount = su.getDiscountAmount(totalPrice, e.getDiscount());
+        double actualPrice = su.getTotalPrice(totalPrice, discountAmount);
         try {
             ps = util.getCon().prepareStatement(sql);
             ps.setString(1, e.getProductName());
@@ -59,7 +60,36 @@ public class DaoSales implements DaoService<Sales> {
 
     @Override
     public List<Sales> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        sql = "select*from sales";
+
+        List<Sales> list = new ArrayList<>();
+
+        try {
+
+            ps = util.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Sales s = new Sales(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getDouble("unitPrice"),
+                        rs.getDouble("quantity"),
+                        rs.getDouble("totalPrice"),
+                        rs.getDouble("unitPrice"),
+                        rs.getDouble("actualPrice")
+                ) {
+                };
+
+                list.add(s);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSales.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
     @Override

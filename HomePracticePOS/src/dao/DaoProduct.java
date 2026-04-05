@@ -150,4 +150,27 @@ public class DaoProduct implements DaoService<Product> {
         }
     }
 
+    public List<String> getAllProductName() {
+        List<String> productName = new ArrayList<>();
+
+        sql = "select name from product ";
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                productName.add(name);
+            }
+
+            ps.close();
+            util.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSales.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return productName;
+
+    }
+
 }
