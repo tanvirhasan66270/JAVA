@@ -40,6 +40,7 @@ public class Sales {
         this.actualPrice = actualPrice;
     }
 
+    
     public int getId() {
         return id;
     }

@@ -33,6 +33,8 @@ public class SalesView extends javax.swing.JFrame {
         Clear();
         showAllSalesProduct();
         LoadAllProduct();
+//        getProIdByName();
+//        
     }
 
     void Clear() {
@@ -54,6 +56,13 @@ public class SalesView extends javax.swing.JFrame {
             comboSalesProduct.addItem(sales);
         }
     }
+//      public int getProIdByName() {
+//        String proName = comboSalesProduct.getSelectedItem().toString();
+////        int id = daoProduct.getIdByNameProduct(catName);
+////        System.out.println("id" + id);
+//        return proName;
+//      
+//    }
     
 
     public void showAllSalesProduct() {
@@ -324,14 +333,14 @@ public class SalesView extends javax.swing.JFrame {
 
     private void btnSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseClicked
         // TODO add your handling code here:
-
+//        Integer productName=LoadAllProduct();
         double unitPrice = Double.parseDouble(txtSalesUnitPrice.getText().trim());
         double quantity = Double.parseDouble(txtSalesQuantity.getText().trim());
         double totalPrice = Double.parseDouble(txtSalesTotalPrice.getText().trim());
         double discount = Double.parseDouble(txtSalesDiscount.getText().trim());
         double actualPrice = Double.parseDouble(txtSalesActualPrice.getText().trim());
 
-//   sales=new Sales(unitPrice, quantity, totalPrice, discount, actualPrice);
+//  sales=new Sales(productName, unitPrice, quantity, totalPrice, discount, actualPrice);
         daoSales.save(sales);
         System.out.println(daoSales);
         Clear();

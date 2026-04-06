@@ -128,7 +128,7 @@ public class DaoSupplier implements DaoService<Supplier> {
 
     public List<String> getAllSupplierName() {
         List<String> list = new ArrayList<>();
-        sql = "select*from supplier";
+        sql = "select * from supplier";
 
         try {
             ps = util.getCon().prepareStatement(sql);

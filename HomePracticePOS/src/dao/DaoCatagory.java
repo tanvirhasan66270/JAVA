@@ -112,7 +112,7 @@ public class DaoCatagory implements DaoService<Catagory> {
     public List<String> getAllCatagoryName() {
         List<String> list;
         list = new ArrayList<>();
-        sql = "select*from catagory";
+        sql = "select * from catagory";
 
         try {
             ps = util.getCon().prepareStatement(sql);

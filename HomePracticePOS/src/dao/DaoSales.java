@@ -77,7 +77,7 @@ public class DaoSales implements DaoService<Sales> {
                         rs.getDouble("unitPrice"),
                         rs.getDouble("quantity"),
                         rs.getDouble("totalPrice"),
-                        rs.getDouble("unitPrice"),
+                        rs.getDouble("discount"),
                         rs.getDouble("actualPrice")
                 ) {
                 };

@@ -153,7 +153,7 @@ public class DaoProduct implements DaoService<Product> {
     public List<String> getAllProductName() {
         List<String> productName = new ArrayList<>();
 
-        sql = "select name from product ";
+        sql = "select * from product ";
         try {
             ps = util.getCon().prepareStatement(sql);
             rs = ps.executeQuery();
@@ -162,15 +162,58 @@ public class DaoProduct implements DaoService<Product> {
                 String name = rs.getString("name");
                 productName.add(name);
             }
-
+            rs.close();
             ps.close();
             util.getCon().close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoSales.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         return productName;
 
     }
+    public int getIdByNameProduct(String ProductName) {
+
+        sql = "select id from product where name=?";
+
+        int id = 0;
+
+        try {
+            ps = util.getCon().prepareStatement(sql);
+            ps.setString(1, ProductName);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                id = rs.getInt("id");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+
+    }
+//    public List<String> getAllProductName() {
+//        List<String> list = new ArrayList<>();
+//        sql = "select * from supplier";
+//
+//        try {
+//            ps = util.getCon().prepareStatement(sql);
+//
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                list.add(rs.getString("supplierName"));
+//            }
+//            ps.close();
+//            util.getCon().close();
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DaoProduct.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return list;
+//
+//    }
 
 }
