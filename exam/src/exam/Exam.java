@@ -18,16 +18,7 @@ public class Exam {
     static ResultSet rs;
 
     public static void main(String[] args) {
-
-        saveStudent("Badrul", "badrul@gmail.com", 1000);
-        showAllData();
-        //------------------------------------------------------------------
-        Delete(4);
-        showAllData();
-
-        Update("PK", "pk@gmail.com", 20000, 7);
-        showAllData();
-
+        System.out.println("jhbsa");
     }
 
     public static Connection getConnaction() {

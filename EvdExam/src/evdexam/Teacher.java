@@ -1,0 +1,73 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package evdexam;
+
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Admin
+ */
+public class Teacher {
+
+    private int id;
+    private String name;
+    private String qualification;
+    private double salary;
+
+    public Teacher() {
+    }
+
+    public Teacher(int id, String name, String qualification, double salary) {
+        this.id = id;
+        this.name = name;
+        this.qualification = qualification;
+        this.salary = salary;
+    }
+
+    public Teacher(String name, String qualification, double salary) {
+        this.name = name;
+        this.qualification = qualification;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" + "id=" + id + ", name=" + name + ", qualification=" + qualification + ", salary=" + salary + '}';
+    }
+
+}
