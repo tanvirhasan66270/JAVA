@@ -49,13 +49,13 @@ public class StudentServlet extends HttpServlet {
 
         if ("delete".equalsIgnoreCase(action)) {
 
-            int id = Integer.parseInt(request.getParameter("name"));
+            int id = Integer.parseInt(request.getParameter("id"));
             dao.delete(id);
             response.sendRedirect("home.jsp");
 
         } else if ("edit".equalsIgnoreCase(action)) {
 
-            int id = Integer.parseInt(request.getParameter("name"));
+            int id = Integer.parseInt(request.getParameter("id"));
             Student s = dao.getById(id);
             request.setAttribute("student", s);
             request.getRequestDispatcher("edit.jsp").forward(request, response);
@@ -79,6 +79,7 @@ public class StudentServlet extends HttpServlet {
             dao.save(s);
 
             response.sendRedirect("home.jsp");
+            
         } else if ("update".equalsIgnoreCase(action)) {
 
             Student s = new Student();
@@ -86,7 +87,7 @@ public class StudentServlet extends HttpServlet {
             s.setName(request.getParameter("name"));
             s.setEmail(request.getParameter("email"));
             s.setFee(Double.parseDouble(request.getParameter("fee")));
-            s.setId(Integer.parseInt(request.getParameter("name")));
+            s.setId(Integer.parseInt(request.getParameter("id")));
             dao.update(s);
             response.sendRedirect("home.jsp");
         }

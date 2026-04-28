@@ -103,6 +103,7 @@ public class StudentDao {
         try {
             ps = util.getCon().prepareStatement(sql);
             ps.setInt(1, id);
+            ps.executeUpdate();
 
             ps.close();
             util.getCon().close();

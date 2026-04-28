@@ -15,7 +15,7 @@
 
     </form> <h1>Student From</h1> 
     <form action="StudentServlet" method="POST">
-        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="action" value="add"/>
 
         <label for="">Name</label>
         <input type="name" name="name"> <br> <br>
