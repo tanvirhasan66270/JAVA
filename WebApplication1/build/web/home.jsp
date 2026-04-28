@@ -1,14 +1,7 @@
-
-<%-- 
-    Document   : home
-    Created on : Apr 27, 2026, 5:35:05 PM
-    Author     : Admin
-
 - 
     Document   : home
     Created on : Apr 28, 2026, 1:21:14 AM
     Author     : Dell
-
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

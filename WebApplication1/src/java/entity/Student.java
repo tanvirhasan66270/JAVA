@@ -6,6 +6,7 @@ package entity;
 
 /**
  *
+
  * @author Admin
  */
 public class Student {
@@ -14,8 +15,19 @@ public class Student {
     private String email;
     private double free;
 
+ * @author Dell
+ */
+public class Student {
+
+    private int id;
+    private String name;
+    private String email;
+    private double fee;
+0
+
     public Student() {
     }
+
 
     public Student(int id, String name, String email, double free) {
         this.id = id;
@@ -28,6 +40,19 @@ public class Student {
         this.name = name;
         this.email = email;
         this.free = free;
+
+    public Student(int id, String name, String email, double fee) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.fee = fee;
+    }
+
+    public Student(String name, String email, double fee) {
+        this.name = name;
+        this.email = email;
+        this.fee = fee;
+
     }
 
     public int getId() {
@@ -54,6 +79,7 @@ public class Student {
         this.email = email;
     }
 
+
     public double getFree() {
         return free;
     }
@@ -63,4 +89,14 @@ public class Student {
     }
     
     
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+
 }
