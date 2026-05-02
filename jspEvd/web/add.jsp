@@ -25,6 +25,9 @@
 
         <label  for="">Student Fee</label>
         <input type="fee" name="fee"><br> <br>
+        
+         <label for="">Father Name</label>
+        <input type="date" name="fatherName"> <br> <br>
 
         <button type="submit" value="save">Submit</button>
     </form>

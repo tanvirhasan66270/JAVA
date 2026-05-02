@@ -9,25 +9,29 @@ package entity;
  * @author Admin
  */
 public class Student {
-   private int id;
-   private String name;
-   private String email;
-   private double fee;
+
+    private int id;
+    private String name;
+    private String email;
+    private double fee;
+    private String fatherName;
 
     public Student() {
     }
 
-    public Student(int id, String name, String email, double fee) {
+    public Student(int id, String name, String email, double fee, String fatherName) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.fee = fee;
+        this.fatherName = fatherName;
     }
 
-    public Student(String name, String email, double fee) {
+    public Student(String name, String email, double fee, String fatherName) {
         this.name = name;
         this.email = email;
         this.fee = fee;
+        this.fatherName = fatherName;
     }
 
     public int getId() {
@@ -61,6 +65,14 @@ public class Student {
     public void setFee(double fee) {
         this.fee = fee;
     }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
    
-  
 }

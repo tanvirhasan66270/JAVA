@@ -28,8 +28,11 @@ Student s = (Student) request.getAttribute("student");
 
         <label  for="">Student Fee</label>
         <input type="fee" name="fee" value="<%= s.getFee() %>"><br> <br>
+        
+        <label for="">Father Name</label>
+        <input type="date" name="fatherName" value="<%= s.getFatherName() %>"> <br> <br>
 
         <button type="submit" value="Update" >Submit</button>
     </form>
-    </body>
+</body>
 </html>

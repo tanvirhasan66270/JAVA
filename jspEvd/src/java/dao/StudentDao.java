@@ -27,8 +27,8 @@ public class StudentDao {
     static String sql;
 
     public void save(Student s) {
-        
-        sql = "insert into student (name,email,fee)values(?,?,?)";
+
+        sql = "insert into student (name,email,fee,fatherName)values(?,?,?,?)";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -36,20 +36,20 @@ public class StudentDao {
             ps.setString(1, s.getName());
             ps.setString(2, s.getEmail());
             ps.setDouble(3, s.getFee());
-          ps.executeUpdate();
+            ps.setString(4, s.getFatherName());
+            ps.executeUpdate();
             ps.close();
             util.getCon().close();
 
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 
     public void update(Student s) {
 
-        sql = "update student set name=?,email=?,fee=? where id=?";
+        sql = "update student set name=?,email=?,fee=?,fatherName=? where id=?";
 
         try {
             ps = util.getCon().prepareStatement(sql);
@@ -57,7 +57,8 @@ public class StudentDao {
             ps.setString(1, s.getName());
             ps.setString(2, s.getEmail());
             ps.setDouble(3, s.getFee());
-            ps.setInt(4, s.getId());
+            ps.setString(4, s.getFatherName());
+            ps.setInt(5, s.getId());
             ps.executeUpdate();
             ps.close();
             util.getCon().close();
@@ -84,7 +85,8 @@ public class StudentDao {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("email"),
-                        rs.getDouble("fee"));
+                        rs.getDouble("fee"),
+                        rs.getString("fatherName"));
 
                 list.add(s);
             }
@@ -127,7 +129,8 @@ public class StudentDao {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("email"),
-                        rs.getDouble("fee"));
+                        rs.getDouble("fee"),
+                        rs.getString("fatherName"));
             }
             ps.close();
             util.getCon().close();

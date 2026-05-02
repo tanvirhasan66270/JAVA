@@ -76,6 +76,8 @@ public class StudentServlet extends HttpServlet {
             s.setName(request.getParameter("name"));
             s.setEmail(request.getParameter("email"));
             s.setFee(Double.parseDouble(request.getParameter("fee")));
+            s.setFatherName(request.getParameter("fatherName"));
+            
             dao.save(s);
 
             response.sendRedirect("home.jsp");
@@ -87,6 +89,7 @@ public class StudentServlet extends HttpServlet {
             s.setName(request.getParameter("name"));
             s.setEmail(request.getParameter("email"));
             s.setFee(Double.parseDouble(request.getParameter("fee")));
+            s.setFatherName(request.getParameter("fatherName"));
             s.setId(Integer.parseInt(request.getParameter("id")));
             dao.update(s);
             response.sendRedirect("home.jsp");

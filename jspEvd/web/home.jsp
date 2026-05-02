@@ -26,6 +26,7 @@ request.setAttribute("list",list);
         <th>Name</th>
         <th>Email</th>
         <th>Student Fee</th>
+        <th>Father Name</th>
         <th>Action</th>
     </tr>
 
@@ -39,6 +40,7 @@ request.setAttribute("list",list);
             <td>${s.name}</td>
             <td>${s.email}</td>
             <td>${s.fee}</td>
+            <td>${s.fatherName}</td>
             <td>
 
                 <a href="StudentServlet?action=edit&id=${s.id}">Edit</a>
