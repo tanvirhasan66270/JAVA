@@ -4,13 +4,14 @@
 
 
 <% 
-    int r = EmpDao.save(e);
+    
+    int r = EmpDao.delete(e.getId());
     
     if(r > 0){
         response.sendRedirect("index.jsp");
     
     }else{
-    response.sendRedirect("addStuForm.jsp");
+    response.sendRedirect("index.jsp");
     }
     
 
