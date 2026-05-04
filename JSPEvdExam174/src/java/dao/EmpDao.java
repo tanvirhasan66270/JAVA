@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import util.DBUtil;
+
+import util.DbUtil;
 
 /**
  *
@@ -20,7 +21,7 @@ import util.DBUtil;
  */
 public class EmpDao {
 
-    static DBUtil util = new DBUtil();
+    static DbUtil util = new DbUtil();
 
     static PreparedStatement ps;
     static ResultSet rs;

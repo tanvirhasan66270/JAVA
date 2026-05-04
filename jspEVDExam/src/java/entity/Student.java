@@ -12,26 +12,26 @@ public class Student {
 
     private int id;
     private String name;
-    private String email;
-    private double fee;
-    private String fatherName;
+    private String subject;
+    private double marks;
+    private String departments;
 
     public Student() {
     }
 
-    public Student(int id, String name, String email, double fee, String fatherName) {
+    public Student(int id, String name, String subject, double marks, String departments) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.fee = fee;
-        this.fatherName = fatherName;
+        this.subject = subject;
+        this.marks = marks;
+        this.departments = departments;
     }
 
-    public Student(String name, String email, double fee, String fatherName) {
+    public Student(String name, String subject, double marks, String departments) {
         this.name = name;
-        this.email = email;
-        this.fee = fee;
-        this.fatherName = fatherName;
+        this.subject = subject;
+        this.marks = marks;
+        this.departments = departments;
     }
 
     public int getId() {
@@ -50,29 +50,29 @@ public class Student {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public double getFee() {
-        return fee;
+    public double getMarks() {
+        return marks;
     }
 
-    public void setFee(double fee) {
-        this.fee = fee;
+    public void setMarks(double marks) {
+        this.marks = marks;
     }
 
-    public String getFatherName() {
-        return fatherName;
+    public String getDepartments() {
+        return departments;
     }
 
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
+    public void setDepartments(String departments) {
+        this.departments = departments;
     }
 
-   
+  
 }

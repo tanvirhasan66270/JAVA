@@ -28,15 +28,15 @@ public class StudentDao {
 
     public void save(Student s) {
 
-        sql = "insert into student (name,email,fee,fatherName)values(?,?,?,?)";
+        sql = "insert into student (name,subject,marks,departments)values(?,?,?,?)";
 
         try {
             ps = util.getCon().prepareStatement(sql);
 
             ps.setString(1, s.getName());
-            ps.setString(2, s.getEmail());
-            ps.setDouble(3, s.getFee());
-            ps.setString(4, s.getFatherName());
+            ps.setString(2, s.getSubject());
+            ps.setDouble(3, s.getMarks());
+            ps.setString(4, s.getDepartments());
             ps.executeUpdate();
             ps.close();
             util.getCon().close();
@@ -49,15 +49,15 @@ public class StudentDao {
 
     public void update(Student s) {
 
-        sql = "update student set name=?,email=?,fee=?,fatherName=? where id=?";
+        sql = "update student set name=?,subject=?,marks=?,departments=? where id=?";
 
         try {
             ps = util.getCon().prepareStatement(sql);
 
-            ps.setString(1, s.getName());
-            ps.setString(2, s.getEmail());
-            ps.setDouble(3, s.getFee());
-            ps.setString(4, s.getFatherName());
+             ps.setString(1, s.getName());
+            ps.setString(2, s.getSubject());
+            ps.setDouble(3, s.getMarks());
+            ps.setString(4, s.getDepartments());
             ps.setInt(5, s.getId());
             ps.executeUpdate();
             ps.close();
@@ -84,9 +84,9 @@ public class StudentDao {
                 Student s = new Student(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getDouble("fee"),
-                        rs.getString("fatherName"));
+                        rs.getString("subject"),
+                        rs.getDouble("marks"),
+                        rs.getString("departments"));
 
                 list.add(s);
             }
@@ -126,11 +126,11 @@ public class StudentDao {
 
             while (rs.next()) {
                 s = new Student(
-                        rs.getInt("id"),
+                       rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getDouble("fee"),
-                        rs.getString("fatherName"));
+                        rs.getString("subject"),
+                        rs.getDouble("marks"),
+                        rs.getString("departments"));
             }
             ps.close();
             util.getCon().close();

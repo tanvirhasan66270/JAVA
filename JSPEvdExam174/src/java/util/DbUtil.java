@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class DBUtil {
+public class DbUtil {
     
      private  Connection con = null;
     private  String url = "jdbc:mysql://localhost:3306/practice";
@@ -29,9 +29,9 @@ public class DBUtil {
             con = DriverManager.getConnection(url, user, password);
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return con;
 
