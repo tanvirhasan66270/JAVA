@@ -1,8 +1,3 @@
-<%-- 
-    Document   : add
-    Created on : Apr 28, 2026, 4:36:57 PM
-    Author     : Admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
